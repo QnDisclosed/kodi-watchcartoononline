@@ -1,4 +1,5 @@
-"# kodi-watchcartoononline" 
+== WatchCartoonOnline Kodi Addon ==
+
 Since Spoyser removed his kodi repository, I removed his fork as well. I just kept the watchcartoononline kodi plugin and might occassionally improve it.
 
 The last version was 1.0.22 with the following changes:
