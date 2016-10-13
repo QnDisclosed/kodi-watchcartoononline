@@ -3,7 +3,7 @@
 #  All information is extracted from the name string using regular expressions
 #  Only the watched status is written to CSV files (one per series) that reside in the cache folder
 #
-#  Copyright (C) 2015 Sean Poyser / QnD (camael@gmx.net)
+#  Copyright (C) 2015 Sean Poyser / QnDisclosed
 #
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by

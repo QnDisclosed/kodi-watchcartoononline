@@ -137,12 +137,12 @@ def DoSection(url):
   
     names = []
 
-    match = re.compile('<li><a href="(.+?)">(.+?)</a></li>').findall(html)
+    match = re.compile('<li><a href="(.+?)".*?>(.+?)</a></li>').findall(html)
 
     sorted = []
 
     for url, name in match:
-        if ('#' not in url) and ('title="' not in url):
+        if ('#' not in url):
             if name not in names:
                 names.append(name)
                 if mode == SERIES:
