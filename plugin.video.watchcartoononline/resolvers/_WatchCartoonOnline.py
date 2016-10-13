@@ -29,13 +29,17 @@ def Resolve(html):
     try:    
         results = []
 
-        urls = re.compile('<iframe id.+?src="(.+?)".+?</iframe>').findall(html)
+        urls = re.compile('<iframe .*?src="(.+?)".+?</iframe>').findall(html)
 
         for url in urls:
+            print "WCO URL: "+url
             if 'cizgifilmlerizle' in url:
                 DoResolve(url, results)
 
             if 'animeuploads' in url:
+                DoResolve(url, results)
+                
+            if '/cartoon/' in url:
                 DoResolve(url, results)
 
             if 'vid44.php' in url:
@@ -73,6 +77,11 @@ def DoResolve(url, results):
 
         if len(links) == 0:
             links = re.compile(';file=(.+?)&provider=http\'').findall(html)
+            for link in links:
+                results.append([urllib.unquote_plus(link), ''])
+                
+        if len(links) == 0:
+            links = re.compile('sources.*?file:.?"(.+?)"').findall(html)
             for link in links:
                 results.append([urllib.unquote_plus(link), ''])
 

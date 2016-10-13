@@ -52,7 +52,7 @@ def ResolveURL(url):
     match = re.compile('<div class=\'postTabs_divs(.+?)</div>').findall(html)  
 
     try:
-        for item in match:   
+        for item in match:
             for module in MODULES:                        
                 links = MODULES[module].Resolve(item)
                 for link in links:                                   
