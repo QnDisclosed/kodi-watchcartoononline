@@ -124,9 +124,9 @@ def Main():
 
 def DoSection(url):
     mode = SERIES
-    if url == 'http://www.watchcartoononline.com/movie-list':
+    if url == 'http://www.watchcartoononline.io/movie-list':
         mode = EPISODE
-    if url == 'http://www.watchcartoononline.com/ova-list':
+    if url == 'http://www.watchcartoononline.io/ova-list':
         mode = EPISODE
 
     html = utils.getHTML(url)
@@ -160,7 +160,11 @@ def DoSection(url):
 
 def DoSeries(html):
     title = re.compile('<title>(.+?) \| .+?').search(html).group(1)
-    image = re.compile('"image_src" href="(.+?)"').search(html).group(1)
+
+    image = ""
+    imgMatch = re.compile('<div id="cat-img-desc".+?<img src="(.+?)".+?</div>').search(html);
+    if imgMatch:
+        image = imgMatch.group(1)
 
     html  = html.split('<!--CAT List FINISH-->', 1)[0]
     match = re.compile('<li>(.+?)</li>').findall(html)
@@ -286,7 +290,10 @@ def PlayVideo(_url, select):
         return
 
     html  = utils.getHTML(_url)
-    image = re.compile('"image_src" href="(.+?)"').search(html).group(1)
+    image = ""
+    imgMatch = re.compile('<div id="cat-img-desc".+?<img src="(.+?)".+?</div>').search(html);
+    if imgMatch:
+        image = imgMatch.group(1)
 
     #following sometimes doesn't contain episode information :(
     #title = re.compile('<title>(.+?)</title>').search(html).group(1).split(' |', 1)[0]
@@ -349,7 +356,7 @@ def AddSection(name, image, url):
 
 def AddDir(name, mode, url='', image=None, isFolder=True, page=1, keyword=None, infoLabels=None, menu=None):
     name = utils.clean(name)
-
+    
     if not image:
         image = ICON
 
