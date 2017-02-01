@@ -62,6 +62,9 @@ def DoResolve(url, results):
         import wco_utils as utils
         theNet = net.Net()
 
+        # Force SD
+        url = url.replace(';h=720', ';h=480')
+        
         data = {'fuck_you' : '', 'confirm' : 'Click+Here+to+Watch+Free%21%21'}
         url  = url.replace(' ', '%20')
 
@@ -70,11 +73,10 @@ def DoResolve(url, results):
 
         html  = theNet.http_POST(url, data).content.replace('\n', '').replace('\t', '')        
 
-        links = re.compile('file:.+?"(.+?)",.+?label:.+?"(.+?)"').findall(html)
+        links = re.compile('file:\s*"(.+?)",.+?label:.+?"(.+?)"').findall(html)
         for link in links:
             try:    results.append([link[0], link[1]])
             except: pass        
-
         if len(links) == 0:
             links = re.compile(';file=(.+?)&provider=http\'').findall(html)
             for link in links:
