@@ -10,5 +10,8 @@ The last version was 1.0.22 with the following changes:
 Also the plugin version here fixes some bugs and keeps all series images it encounters.
 
 **Changes**
+- v1.0.25, working as of 19. Mar 2017
+  - support for HTML5 player
+  - support for Krypton
 - v1.0.24, working as of 19. Nov 2016
   - image tags changed, images were removed from episodes
