@@ -321,7 +321,7 @@ def PlayVideo(_url, select):
         pl.add(url, liz)
         #xbmc.Player().play(pl)
 
-        player = XBMCPlayer(xbmc.PLAYER_CORE_DVDPLAYER)
+        player = XBMCPlayer()
         player.SetMetaData(metaData)
         player.play(pl)
         while player.isActive:
